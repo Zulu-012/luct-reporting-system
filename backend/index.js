@@ -1,5 +1,4 @@
- // index.js - Consolidated Server File with Role-Based Access Control
-require('dotenv').config();
+// index.js - Consolidated Server File with Role-Based Access Control
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -7,18 +6,21 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 
 const app = express();
+  
 
 // ===== DATABASE CONFIGURATION =====
-const db = mysql.createConnection ({
-  DB_HOST: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-  DB_USER : '3vVzkRBTSVrokdX.root',
-  DB_PASSWORD : 'afX9tjdLKHJRQIdT',
-  DB_NAME :'test',
-  DB_CONNECTION_LIMIT :10
+const pool = mysql.createPool({
+  host: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+  user: '3vVzkRBTSVrokdX.root',
+  password: 'afX9tjdLKHJRQIdT',
+  database: 'test',
+  waitForConnections: true,
+  connectionLimit: 10,
+  timezone: 'Z'
 });
 
 // ===== AUTHENTICATION MIDDLEWARE =====
-const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
+const JWT_SECRET = 'supersecretjwtkeyforlecturesystem';
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -966,7 +968,7 @@ app.use((req, res) => {
 });
 
 // === START SERVER ===
-const PORT = process.env.PORT || 8081;
+const PORT = 8081;
 
 const startServer = async () => {
   try {
