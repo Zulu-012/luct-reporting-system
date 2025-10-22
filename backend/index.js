@@ -9,22 +9,12 @@ const cors = require('cors');
 const app = express();
 
 // ===== DATABASE CONFIGURATION =====
-const {
-  DB_HOST = 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-  DB_USER = '3vVzkRBTSVrokdX.root',
-  DB_PASSWORD = 'afX9tjdLKHJRQIdT',
-  DB_NAME = 'test',
-  DB_CONNECTION_LIMIT = 10
-} = process.env;
-
-const pool = mysql.createPool({
-  host: DB_HOST,
-  user: DB_USER,
-  password: DB_PASSWORD,
-  database: DB_NAME,
-  waitForConnections: true,
-  connectionLimit: Number(DB_CONNECTION_LIMIT),
-  timezone: 'Z'
+const db = mysql.createConnection ({
+  DB_HOST: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+  DB_USER : '3vVzkRBTSVrokdX.root',
+  DB_PASSWORD : 'afX9tjdLKHJRQIdT',
+  DB_NAME :'test',
+  DB_CONNECTION_LIMIT :10
 });
 
 // ===== AUTHENTICATION MIDDLEWARE =====
