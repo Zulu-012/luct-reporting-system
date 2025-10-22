@@ -6,7 +6,6 @@ const mysql = require('mysql2/promise');
 const cors = require('cors');
 
 const app = express();
-  
 
 // ===== DATABASE CONFIGURATION =====
 const pool = mysql.createPool({
@@ -16,7 +15,8 @@ const pool = mysql.createPool({
   database: 'test',
   waitForConnections: true,
   connectionLimit: 10,
-  timezone: 'Z'
+  timezone: 'Z',
+  ssl: { rejectUnauthorized: true }
 });
 
 // ===== AUTHENTICATION MIDDLEWARE =====
@@ -1098,6 +1098,7 @@ const startServer = async () => {
       console.log(`   👨‍💼 Lecturers: Can CREATE/VIEW their own lectures`);
       console.log(`   👨‍🎓 Students: Can VIEW classes and lectures, POST ratings`);
       console.log(`   🔐 Admin: Full access`);
+      console.log(`🔒 SSL Connection: Enabled with certificate verification`);
     });
   } catch (err) {
     console.error('❌ Database connection failed:', err.message);
