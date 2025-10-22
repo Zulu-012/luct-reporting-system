@@ -10,10 +10,10 @@ const app = express();
 
 // ===== DATABASE CONFIGURATION =====
 const {
-  DB_HOST = 'localhost',
-  DB_USER = 'root',
-  DB_PASSWORD = 'keahana',
-  DB_NAME = 'new_schema',
+  DB_HOST = 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+  DB_USER = '3vVzkRBTSVrokdX.root',
+  DB_PASSWORD = 'afX9tjdLKHJRQIdT',
+  DB_NAME = 'test',
   DB_CONNECTION_LIMIT = 10
 } = process.env;
 
